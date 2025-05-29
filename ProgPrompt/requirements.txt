@@ -1,0 +1,3 @@
+pybullet
+openai
+python-dotenv

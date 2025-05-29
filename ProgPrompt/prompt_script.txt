@@ -1,0 +1,127 @@
+#Write a Python function named '{function_name}'.  
+#Only provide the complete function definition and body.  
+#Do NOT include any explanations, comments, or text outside the function.  
+#Example:  
+#def add(a, b):  
+#  return a + b
+#
+#Now write the function named '{function_name}':
+
+
+from actions import (
+  put_first_on_second,
+  goto_pos,
+  pick_place,
+  get_obj_pos,
+  parse_position,
+  parse_obj_name,
+  stack_objects_in_order,
+  say,
+  pointat,
+  grab
+)
+
+# Objects:
+objects = [
+  "red block", "green block", "blue block",
+  "red bowl", "green bowl", "blue bowl"
+]
+
+# Positions:
+positions = {
+  "top left corner":     [-0.25, -0.25],
+  "top side":            [0.00,  -0.25],
+  "top right corner":    [0.25, -0.25],
+  "left side":           [-0.25, -0.50],
+  "center":              [0.00,  -0.50],
+  "right side":          [0.25, -0.50],
+  "bottom left corner":  [-0.25, -0.75],
+  "bottom side":         [0.00,  -0.75],
+  "bottom right corner": [0.25, -0.75]
+]
+
+# Available functions:
+
+def move_red_block_to_top_right_corner():
+  # Pick up the red block
+  grab("red block")
+  # Move it to the top right corner
+  move_to(*positions["top right corner"])
+  # Place it at that position
+  place(*positions["top right corner"])
+  # Release the block
+  release()
+
+def stack_red_block_on_blue_bowl():
+  # Grab the red block
+  grab("red block")
+  # Move it above the blue bowl
+  move_to(*get_obj_pos("blue bowl"))
+  # Place it on top of the blue bowl
+  place_on("blue bowl")
+  # Release the red block
+  release()
+
+def align_green_and_blue_blocks():
+  # Align green block to the left side
+  grab("green block")
+  move_to(*positions["left side"])
+  place(*positions["left side"])
+  release()
+  # Align blue block to the right side
+  grab("blue block")
+  move_to(*positions["right side"])
+  place(*positions["right side"])
+  release()
+
+def organize_bowls_to_bottom():
+  # Move red bowl to bottom left
+  grab("red bowl")
+  move_to(*positions["bottom left corner"])
+  place(*positions["bottom left corner"])
+  release()
+  # Move green bowl to bottom center
+  grab("green bowl")
+  move_to(*positions["bottom side"])
+  place(*positions["bottom side"])
+  release()
+  # Move blue bowl to bottom right
+  grab("blue bowl")
+  move_to(*positions["bottom right corner"])
+  place(*positions["bottom right corner"])
+  release()
+
+def center_stack_blocks_in_order():
+  # Place blue block at center
+  grab("blue block")
+  move_to(*positions["center"])
+  place(*positions["center"])
+  release()
+  # Stack green block on blue block
+  grab("green block")
+  place_on("blue block")
+  release()
+  # Stack red block on green block
+  grab("red block")
+  place_on("green block")
+  release()
+
+def line_up_blocks_top_row():
+  # Place red block at top left
+  grab("red block")
+  move_to(*positions["top left corner"])
+  place(*positions["top left corner"])
+  release()
+  # Place green block at top center
+  grab("green block")
+  move_to(*positions["top side"])
+  place(*positions["top side"])
+  release()
+  # Place blue block at top right
+  grab("blue block")
+  move_to(*positions["top right corner"])
+  place(*positions["top right corner"])
+  release()
+ 
+
+
